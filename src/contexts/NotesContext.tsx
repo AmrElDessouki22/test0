@@ -6,6 +6,7 @@ interface NotesContextType {
   notes: Note[];
   addNote: (content: string) => void;
   removeNote: (index: number) => void;
+  editNote: (index: number, content: string) => void;
 }
 
 const NotesContext = createContext<NotesContextType | undefined>(undefined);
@@ -21,8 +22,12 @@ export const NotesProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     setNotes((prevNotes) => prevNotes.filter((_, i) => i !== index));
   };
 
+  const editNote = (index: number, content: string) => {
+    setNotes((prevNotes) => prevNotes.map((note, i) => i === index ? { content } : note));
+  };
+
   return (
-    <NotesContext.Provider value={{ notes, addNote, removeNote }}>
+    <NotesContext.Provider value={{ notes, addNote, removeNote, editNote }}>
       {children}
     </NotesContext.Provider>
   );
