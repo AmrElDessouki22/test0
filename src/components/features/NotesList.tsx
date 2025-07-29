@@ -7,10 +7,10 @@ export const NotesList: React.FC = () => {
   const { notes, removeNote, setNoteToEdit } = useNotes();
 
   const handleEdit = (note) => {
-    if (typeof setNoteToEdit === 'function') {
+    if (setNoteToEdit && typeof setNoteToEdit === 'function') {
       setNoteToEdit(note);
     } else {
-      console.error('setNoteToEdit is not a function');
+      console.error('setNoteToEdit is not a function or is undefined');
     }
   }
 
