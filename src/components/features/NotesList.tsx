@@ -7,6 +7,8 @@ export const NotesList: React.FC = () => {
   const { notes, removeNote, setNoteToEdit } = useNotes();
 
   const handleEdit = (note) => {
+    console.log('setNoteToEdit :: ',setNoteToEdit);
+    console.log('typeof setNoteToEdit ::',typeof setNoteToEdit);
     if (setNoteToEdit && typeof setNoteToEdit === 'function') {
       setNoteToEdit(note);
     } else {
